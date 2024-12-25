@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
+import { createClient } from "pexels";
 import Header from "./components/Header";
 
-const PEXELS_API_KEY =
-  "uErC2aasX3Qt65W2XmTgxaGigjB1JRYmHwTJEi5Dk98pl0xENCZcPcgB";
+const GIPHY_API_KEY = "Uuv7CSHnVgjoO73jFt5wI8rfn5b9gAob";
 
 function App() {
   const [score, setScore] = useState(0);
@@ -14,6 +14,10 @@ function App() {
     score > bestScore ? setBestScore(score) : null;
   };
 
+  const handleResetScore = () => {
+    setScore(0);
+  };
+
   return (
     <>
       <Header score={score} bestScore={bestScore} />
@@ -22,5 +26,3 @@ function App() {
 }
 
 export default App;
-
-//generate images with pexels. search for floral images
