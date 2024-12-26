@@ -2,7 +2,7 @@ const Header = ({ score, bestScore }) => {
   return (
     <header>
       <h1>
-        How's <em>your</em> memory?!
+        How&apos;s <em>your</em> memory?!
       </h1>
       <a href="https://giphy.com/">Powered by GIPHY!</a>
       <div id="scoreBoard">
