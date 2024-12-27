@@ -18,28 +18,28 @@ const GameBoard = ({ handleIncreaseScore, handleResetScore }) => {
     const getGifs = async () => {
       const response = await fetch(FETCH_URL, { mode: "cors" });
       const gifData = await response.json();
-      const shuffledData = handleShuffle(gifData.data);
-      setGifs(shuffledData);
+      setGifs(gifData.data);
       setHaveGifs(true);
     };
     getGifs();
+    handleShuffle();
   }, []);
-
   return (
     <div id="gameBoard">
-      {!haveGifs ? (
-        <p>Loading gifs...</p>
+      {haveGifs ? (
+        gifs.map((gif) => {
+          return (
+            <Card
+              src={gif.images.fixed_width.url}
+              key={gif.id}
+              handleIncreaseScore={handleIncreaseScore}
+              handleResetScore={handleResetScore}
+              handleShuffle={handleShuffle}
+            />
+          );
+        })
       ) : (
-        gifs.map((gif) => (
-          <Card
-            src={gif.images.fixed_height_small.url}
-            alt={gif.alt_text}
-            key={gif.id}
-            handleIncreaseScore={handleIncreaseScore}
-            handleShuffle={handleShuffle}
-            handleResetScore={handleResetScore}
-          />
-        ))
+        <p>Loading gifs...</p>
       )}
     </div>
   );
