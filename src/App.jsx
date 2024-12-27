@@ -9,7 +9,9 @@ function App() {
 
   const handleIncreaseScore = () => {
     setScore(score + 1);
-    score > bestScore ? setBestScore(score) : null;
+    //"manually" adding 1 to score since it isn't updated from the above increase until next render.
+    //is there a better way to handle this?
+    score + 1 > bestScore ? setBestScore(score + 1) : null;
   };
 
   const handleResetScore = () => {
@@ -19,7 +21,10 @@ function App() {
   return (
     <>
       <Header score={score} bestScore={bestScore} />
-      <GameBoard />
+      <GameBoard
+        handleIncreaseScore={handleIncreaseScore}
+        handleResetScore={handleResetScore}
+      />
     </>
   );
 }
