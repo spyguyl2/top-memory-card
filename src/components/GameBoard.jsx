@@ -31,7 +31,7 @@ const GameBoard = ({ handleIncreaseScore, handleResetScore }) => {
           return (
             <Card
               src={gif.images.fixed_width.url}
-              key={gif.id}
+              key={gif.index}
               handleIncreaseScore={handleIncreaseScore}
               handleResetScore={handleResetScore}
               handleShuffle={handleShuffle}
