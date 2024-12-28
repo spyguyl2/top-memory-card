@@ -8,6 +8,10 @@
   padding: 2em;
 }
 
+img {
+  pointer-events: none;
+}
+
 #gameBoard {
   display: flex;
   flex-wrap: wrap;
