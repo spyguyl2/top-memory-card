@@ -20,8 +20,8 @@ const Card = ({
   };
 
   return (
-    <div className="card">
-      <img src={src} alt={alt} onClick={handleClicked} />
+    <div className="card" onClick={handleClicked}>
+      <img src={src} alt={alt} />
     </div>
   );
 };
