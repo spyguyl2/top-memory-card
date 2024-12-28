@@ -1,5 +1,5 @@
 import Card from "./Card";
-import _, { shuffle } from "lodash";
+import _, { shuffle, includes } from "lodash";
 import { useEffect, useState } from "react";
 
 const GIPHY_API_KEY = "Uuv7CSHnVgjoO73jFt5wI8rfn5b9gAob";
@@ -7,7 +7,23 @@ const FETCH_URL = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_API_KE
 
 const GameBoard = ({ handleIncreaseScore, handleResetScore }) => {
   const [gifs, setGifs] = useState(null);
+  const [clickedCards, setClickedCards] = useState([]);
   const [haveGifs, setHaveGifs] = useState(false);
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    const id = e.target.id;
+    if (clickedCards.includes(id)) {
+      handleResetScore();
+      setClickedCards([]);
+    } else {
+      handleIncreaseScore();
+      const newArray = clickedCards;
+      newArray.push(id);
+      setClickedCards(newArray);
+    }
+    handleShuffle();
+  };
 
   const handleShuffle = () => {
     const newArray = shuffle(gifs);
@@ -31,10 +47,9 @@ const GameBoard = ({ handleIncreaseScore, handleResetScore }) => {
           return (
             <Card
               src={gif.images.fixed_width.url}
-              key={gif.index}
-              handleIncreaseScore={handleIncreaseScore}
-              handleResetScore={handleResetScore}
-              handleShuffle={handleShuffle}
+              key={gif.id}
+              id={gif.id}
+              handleClick={handleClick}
             />
           );
         })

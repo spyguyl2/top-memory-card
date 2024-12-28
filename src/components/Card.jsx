@@ -1,26 +1,8 @@
 import { useState } from "react";
 
-const Card = ({
-  src,
-  alt,
-  handleIncreaseScore,
-  handleShuffle,
-  handleResetScore,
-}) => {
-  const [clicked, setClicked] = useState(false);
-
-  const handleClicked = () => {
-    if (clicked) {
-      handleResetScore();
-    } else {
-      handleIncreaseScore();
-      setClicked(true);
-    }
-    handleShuffle();
-  };
-
+const Card = ({ src, alt, id, handleClick }) => {
   return (
-    <div className="card" onClick={handleClicked}>
+    <div className="card" id={id} onClick={handleClick}>
       <img src={src} alt={alt} />
     </div>
   );
